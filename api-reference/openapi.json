@@ -1,8 +1,8 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
+    "title": "Atom API",
+    "description": "All the apis to manage your domain marketplace",
     "license": {
       "name": "MIT"
     },
@@ -10,15 +10,118 @@
   },
   "servers": [
     {
-      "url": "http://sandbox.mintlify.com"
-    }
-  ],
-  "security": [
-    {
-      "bearerAuth": []
+      "url": "www.atom.com/api/marketplace/api-docs-1/json.php?api_key=debc30f791373983&user_id=739"
     }
   ],
   "paths": {
+    "/domains": {
+      "get": {
+        "description": "GetDomainList (Premium, Standard, Geo, All)",
+        "parameters": [
+          {
+            "name": "api_token",
+            "in": "query",
+            "description": "API Key to get the details. Default value: debc30f791373983",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "debc30f791373983"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "UserId of the API Token. Default value: 739",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "739"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Domain Type (standard, premium or geo)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["standard", "premium", "geo"]
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of domains to return",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Plant"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a new plant in the store",
+        "requestBody": {
+          "description": "Plant to add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewPlant"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "plant response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Plant"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/plants": {
       "get": {
         "description": "Returns all plants from the system that the user has access to",

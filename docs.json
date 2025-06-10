@@ -16,6 +16,7 @@
           {
             "group": "Get Started",
             "pages": [
+              "home",
               "index",
               "quickstart",
               "development"
@@ -44,6 +45,15 @@
             ]
           },
           {
+            "group": "Seller API's",
+            "pages": [
+              "api-reference/seller_apis/get",
+              "api-reference/endpoint/create",
+              "api-reference/endpoint/delete",
+              "api-reference/endpoint/webhook"
+            ]
+          },
+          {
             "group": "Endpoint Examples",
             "pages": [
               "api-reference/endpoint/get",
@@ -58,7 +68,7 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
+          "anchor": "Documentation1",
           "href": "https://mintlify.com/docs",
           "icon": "book-open-cover"
         },
