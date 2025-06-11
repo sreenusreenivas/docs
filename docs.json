@@ -47,7 +47,9 @@
           {
             "group": "Seller API's",
             "pages": [
-              "api-reference/seller_apis/get"
+              "api-reference/seller_apis/get",
+              "api-reference/seller_apis/categories",
+              "api-reference/seller_apis/search"
             ]
           }
         ]
